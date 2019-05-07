@@ -15,22 +15,22 @@ dotfiles: ## Installs the dotfiles.
 	for file in $(shell find $(CURDIR) -name ".*" -not -name ".gitignore" -not -name ".travis.yml" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg"); do \
 		f=$$(basename $$file); \
 		ln -sfn $$file $(HOME)/$$f; \
-	done; \
-	gpg --list-keys || true;
-	ln -sfn $(CURDIR)/.gnupg/gpg.conf $(HOME)/.gnupg/gpg.conf;
-	ln -sfn $(CURDIR)/.gnupg/gpg-agent.conf $(HOME)/.gnupg/gpg-agent.conf;
-	ln -fn $(CURDIR)/gitignore $(HOME)/.gitignore;
-	git update-index --skip-worktree $(CURDIR)/.gitconfig;
-	mkdir -p $(HOME)/.config;
-	ln -snf $(CURDIR)/.i3 $(HOME)/.config/sway;
-	mkdir -p $(HOME)/.local/share;
-	ln -snf $(CURDIR)/.fonts $(HOME)/.local/share/fonts;
-	ln -snf $(CURDIR)/.bash_profile $(HOME)/.profile;
-	if [ -f /usr/local/bin/pinentry ]; then \
-		sudo ln -snf /usr/bin/pinentry /usr/local/bin/pinentry; \
-	fi;
-	mkdir -p $(HOME)/Pictures;
-	ln -snf $(CURDIR)/central-park.jpg $(HOME)/Pictures/central-park.jpg;
+	done;
+#	gpg --list-keys || true;
+#	ln -sfn $(CURDIR)/.gnupg/gpg.conf $(HOME)/.gnupg/gpg.conf;
+#	ln -sfn $(CURDIR)/.gnupg/gpg-agent.conf $(HOME)/.gnupg/gpg-agent.conf;
+#	ln -fn $(CURDIR)/gitignore $(HOME)/.gitignore;
+#	git update-index --skip-worktree $(CURDIR)/.gitconfig;
+#	mkdir -p $(HOME)/.config;
+#	ln -snf $(CURDIR)/.i3 $(HOME)/.config/sway;
+#	mkdir -p $(HOME)/.local/share;
+#	ln -snf $(CURDIR)/.fonts $(HOME)/.local/share/fonts;
+#	ln -snf $(CURDIR)/.bash_profile $(HOME)/.profile;
+#	if [ -f /usr/local/bin/pinentry ]; then \
+#		sudo ln -snf /usr/bin/pinentry /usr/local/bin/pinentry; \
+#	fi;
+#	mkdir -p $(HOME)/Pictures;
+#	ln -snf $(CURDIR)/central-park.jpg $(HOME)/Pictures/central-park.jpg;
 
 .PHONY: etc
 etc: ## Installs the etc directory files.
