@@ -1,0 +1,123 @@
+# see /usr/share/doc/bash/examples/startup-files for examples
+OS=`uname -s`
+
+export LANG=C
+case $OS in
+	Linux)
+        alias ls='ls --color=auto'
+        alias vi='vim -X'
+        alias shred='shred -zu'
+        alias grep='grep --color=auto'
+        if [ -f ~/.ssh/id_rsa  ]; then
+              keychain -q ~/.ssh/id_rsa
+              if [ -f  ~/.keychain/${HOSTNAME}-sh ]; then
+                  . ~/.keychain/${HOSTNAME}-sh
+              fi
+        fi
+	;;
+	FreeBSD)
+        alias ls='gnuls --color=auto'
+        alias vi='vim -X'
+        TERM=xterm-color
+        export TERM
+        stty erase2 ^H;;
+    SunOS)
+        true;;
+esac
+
+if [[ -f ~/.docker_aliases ]]; then
+    . ~/.docker_aliases
+fi
+
+
+# If running interactively, then:
+if [ "$PS1" ]; then
+
+PS1='\[\033[1;33m\]\u\[\033[1;37m\]@\[\033[1;32m\]\h jobs(\j)  \t \!\n\[\033[1;31m\]\w\[\033[1;36m\]\$ \[\033[0m\]'
+fi
+fancyprompt=0;
+
+
+if [ "$SSH_CLIENT" ] ;then
+	fancyprompt=1;
+fi
+
+if [ "$DISPLAY" ]; then
+	fancyprompt=1;
+fi
+
+if [ $TERM == "cons25" ] || [ $TERM == "linux" ]; then
+	fancyprompt=0;
+fi
+
+if [ "$fancyprompt" == 1 ]; then
+    	TITLEBAR='\[\033]0;\u@\h:\w\007\]'
+	PS1="${TITLEBAR}$PS1"
+fi
+if [ "$DISPLAY" ]; then
+	TERM=xterm-256color
+	export TERM
+	alias vi='TERM=xterm-256color vim -X'
+fi
+
+case $TERM in
+	    screen) PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\033\\"'
+	    ;;
+esac
+
+if [ -f /etc/bash_completion ]; then
+	. /etc/bash_completion
+fi
+
+if [ -f /usr/local/etc/bash_completion ]; then
+	. /usr/local/etc/bash_completion
+fi
+
+repeat ()
+{
+    local count="$1" i;
+    shift;
+    for i in $(seq 1 "$count");
+    do
+        eval "$@";
+    done
+}
+
+# Subfunction needed by `repeat'.
+seq ()
+{
+    local lower upper output;
+    lower=$1 upper=$2;
+
+    if [ $lower -ge $upper ]; then return; fi
+    while [ $lower -le $upper ];
+    do
+        echo -n "$lower "
+        lower=$(($lower + 1))
+    done
+    echo "$lower"
+}
+
+ssh  ()
+{
+	echo  -ne "\033]0;$*\007"
+	/usr/bin/ssh $*
+}
+telnet  ()
+{
+	echo  -ne "\033]0;$*\007"
+	/usr/local/bin/telnet $*
+}
+wanip ()
+{
+        dig +short myip.opendns.com @resolver1.opendns.com
+}
+
+md2word () {
+    pandoc -o ${1/.md/.docx} -f markdown -t docx $1
+
+}
+md2ppt () {
+    pandoc -o ${1/.md/.pptx} -f markdown -t pptx $1
+
+}
