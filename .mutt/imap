@@ -1,0 +1,14 @@
+
+set realname = "Jeff Beley"
+set from = "Jeff Beley <jeff@beley.org>"
+my_hdr From: jeff@beley.org (Jeff Beley)
+set imap_authenticators="LOGIN"
+set imap_check_subscribed = yes
+#GMAIL
+set record = ""
+set folder = "imaps://imap.gmail.com/[Gmail]/"
+set spoolfile="imaps://imap.gmail.com/INBOX"
+set postponed="imaps://imap.gmail.com/postponed"
+set smtp_url=smtps://jbeley:XXXX@smtp.gmail.com/
+save-hook . "=All Mail"
+my_hdr X-Originating-IP: [xxx.xxx.xxx.xxx]

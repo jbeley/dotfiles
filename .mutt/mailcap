@@ -1,0 +1,14 @@
+text/html; w3m -T text/html %s; copiousoutput
+image/gif; eog %s
+image/png; eog %s
+image/jpeg; eog %s
+image/pjpeg; eog %s
+application/msword; antiword %s; copiousoutput;
+#application/msword; /usr/local/OpenOffice.org/program/soffice %s
+#application/vnd.ms-excel; /usr/local/OpenOffice.org/program/soffice %s
+#application/msexcel; /usr/local/OpenOffice.org/program/smaster %s
+application/msexcel; xlhtml -asc %s | w3m -T text/html ; copiousoutput
+applica/msexcel; xlhtml  -asc %s | w3m -T text/html ; copiousoutput
+text/x-vcard; ~/.mutt/mutt.vcard.filter; copiousoutput
+application/pdf; xpdf %s
+application/octet-stream; ~/.mutt/mutt.octet.filter %s; copiousoutput

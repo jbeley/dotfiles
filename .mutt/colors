@@ -1,0 +1,71 @@
+color normal		default		default
+color hdrdefault	brightcyan	default
+color signature		green		default
+color attachment	brightyellow	default
+color indicator		brightblack	brightcyan
+color quoted		green		default
+color quoted1		white		default
+color tilde		blue		default
+
+
+color body		brightcyan	default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+color body		brightwhite	default "(http|ftp|news|telnet|finger)://[^ \">\t\r\n]*"
+color body		brightwhite	default "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+
+
+color header		brightmagenta	default ^(Date):
+color header		brightyellow	default ^Subject:
+
+
+color body		brightred	default " [;:]-*[)>(<|]"	# :-) etc...
+
+
+color index magenta default '(~n 1-1)'
+color index green default '(~n 2-2)'
+color index brightblue default '(~n 3-3)
+color index cyan default '(~n 4-4)'
+color index yellow default '(~n 5-5)'
+color index brightred default '(~n 10-99)'
+
+
+color indicator black cyan
+color status	brightgreen blue
+color hdrdefault cyan default
+color header	brightgreen default ^From:
+color header	brightcyan default ^To:
+color header	brightcyan default ^Reply-To:
+color header	brightcyan default ^Cc:
+color header	brightblue default ^Subject:
+color quoted	green default
+color attachment brightyellow default
+color signature cyan default
+color tree	red default
+color tilde	blue default
+color markers	brightred default
+
+
+#color index_author brightwhite default !~N
+#color index_author brightred default ~N
+#color index_author cyan default '~r >5d'
+#color index_author green default '~r >10d'
+#color index_author brightyellow red ~D
+#color index_subject brightwhite default !~N
+#color index_subject brightred default ~N
+#color index_subject cyan default '~r >5d'
+#color index_subject green default '~r >10d'
+#color index_subject brightyellow red ~D
+#color index_collapsed brightyellow default
+#color index_number blue default
+#color index_flags brightyellow default
+#color index_date magenta default
+#color index_size brightyellow default
+#color index_label brightyellow default
+
+color body brightgreen white "<[Gg]>"                                            # <g>
+color body brightgreen white "<[Bb][Gg]>"                                        # <bg>
+color body brightgreen white " [;:]-*[)>(<|]"                                    # :-) etc...
+color body brightblue  white "(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$)" # *Bold* text.
+color body brightblue  white "(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)"     # _Underlined_ text.
+color body brightblue  white "(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)"     # /Italic/ text.
+
+#color sidebar_new red black

@@ -1,0 +1,30 @@
+
+score ~f.*beley* 4
+set score_threshold_delete=1
+#score ~l +1
+score ~Q +8
+score ~F +7
+score ~p +2
+score ~P +2
+score ~R +2
+score ~U +2
+score ~u +5
+
+
+#score ~s'^\[SPAM\?\]' =1 # Spamassassin
+#score ~ssex =0
+#score ~sadult =0
+#score ~spron =0
+
+# dumb
+#score ~s'.*\\?\\?\\?' =0
+#score ~s'\\?\\?' -2
+#score ~s'.*\!\!\!' =0
+#score ~s'.*\!\!' -2
+#score ~s'\\$\\$.*' =0
+#score ~s'\\$.*' -2
+
+#score ~s'[^[:print:]]' =0
+
+# delete duplicates
+#score ~= =1

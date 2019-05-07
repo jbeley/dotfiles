@@ -1,0 +1,19 @@
+
+ignore received return-path ignore content- precedence x-sun
+ignore message-id mime-version resent- x-loop x-mailing-list status x-status
+ignore path illegal-object xref nntp-posting-host lines references x-sender
+ignore sender old-return-path in-reply-to disclaimer >from
+ignore postal-address address phone fax x400 alternate-recipient
+#ignore x- to from comment
+ignore delivered-to
+ignore content- errors-to in-reply-to mime-version
+ignore lines precedence status
+#ignore nntp-posting-host path old-return-path received references
+#ignore priority >received >>received
+ignore resent- return-path xref path
+ignore x400 importance sensitivity autoforward original-encoded-information
+ignore x- Thread-Index Thread-Topic DomainKey-Signature
+ignore list- comments posted-to approved-by Disposition-Notification-To
+ignore x-spam x-url x-mailer Mail-followup-to Original-recipient User-Agent Organization Authentication-Results DKIM-Signature
+unignore date
+hdr_order From: Subject: To: CC: BCC: Reply-To: Mail-Followup-To: Date: 

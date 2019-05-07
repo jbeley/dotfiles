@@ -1,0 +1,39 @@
+# priority set
+macro index ,mph '<enter-command>my_hdr Priority: High<enter>'
+macro index ,mpm '<enter-command>my_hdr Priority: Medium<enter>'
+macro index ,mpn '<enter-command>my_hdr Priority: Normal<enter>'
+macro index ,mpl '<enter-command>my_hdr Priority: Low<enter>'
+macro index ,mpd '<enter-command>unmy_hdr Priority<enter>'
+
+
+
+macro index I "l ^u ~n 8-9999\n"
+macro index i "l ^u ~A\n"
+macro index \cb |urlscan\n 'call urlview to extract URLs out of a message'
+macro pager \cb |urlscan\n 'call urlview to extract URLs out of a message'
+macro index \ee ":source ~/.muttrc\n" "\"ESC e\" reloads the muttrc"
+macro pager \ee ":source ~/.muttrc\n" "\"ESC e\" reloads the muttrc"
+#macro index i /~F
+#macro index I w!
+#macro index \ei W!
+
+#macro index,pager y ";s^u=All Mail\n"
+#macro index,pager d "<save-message>=Trash<enter><enter>" "Trash"
+macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index ga "<change-folder>=All Mail<enter>" "Go to all mail"
+macro index gs "<change-folder>=Starred<enter>" "Go to starred messages"
+macro index gd "<change-folder>=Drafts<enter>" "Go to drafts"
+macro index go "<change-folder>=Sent Mail<enter>" "Go to sent Mail"
+macro index gp "<change-folder>=Spam<enter>" "Go to Spam"
+
+
+macro index z    "c?\t"                            "List mailboxes and switch to selected one"
+#macro index B ':toggle sidebar_visible^M'
+#macro pager B ':toggle sidebar_visible^M'
+#
+macro index <F8> \
+          "<enter-command>unset wait_key<enter><shell-escape>/usr/bin/notmuch-mutt --prompt search<enter><change-folder-readonly>~/.cache/mutt_results<enter>" \
+          "search mail (using notmuch)"
+    macro index <F9> \
+          "<enter-command>unset wait_key<enter><pipe-message>/usr/bin/notmuch-mutt thread<enter><change-folder-readonly>~/.cache/mutt_results<enter><enter-command>set wait_key<enter>" \
+          "search and reconstruct owning thread (using notmuch)"
