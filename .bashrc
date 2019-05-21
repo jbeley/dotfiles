@@ -26,8 +26,12 @@ if [  -n $less ]; then
 	alias more='less'
 	export PAGER=less
 	export LESSCHARSET='latin1'
-	#export LESSOPEN='|/usr/bin/lesspipe.sh %s 2>&-' # Use this if lesspipe.sh exists
-    eval $(/usr/local/bin/lesspipe.sh)
+    if [ $OS == Darwin ];
+    then
+        eval $(/usr/local/bin/lesspipe.sh)
+    elif [ $OS == Linux ]; then
+        eval $(lesspipe)
+    fi
 	 export LESS='-i -w  -z-4 -g -M -X -F -R -P%t?f%f'
 	export LESS_TERMCAP_mb=$'\E[01;31m'
 	export LESS_TERMCAP_md=$'\E[01;37m'
