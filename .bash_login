@@ -2,18 +2,20 @@
 OS=`uname -s`
 
 export LANG=C
+
+if [ -f ~/.ssh/id_rsa  ]; then
+      keychain -q ~/.ssh/id_rsa
+      if [ -f  ~/.keychain/${HOSTNAME}-sh ]; then
+          . ~/.keychain/${HOSTNAME}-sh
+      fi
+fi
+
 case $OS in
 	Linux)
         alias ls='ls --color=auto'
         alias vi='vim -X'
         alias shred='shred -zu'
         alias grep='grep --color=auto'
-        if [ -f ~/.ssh/id_rsa  ]; then
-              keychain -q ~/.ssh/id_rsa
-              if [ -f  ~/.keychain/${HOSTNAME}-sh ]; then
-                  . ~/.keychain/${HOSTNAME}-sh
-              fi
-        fi
 	;;
 	Darwin)
         alias ls='gls --color=auto';;
