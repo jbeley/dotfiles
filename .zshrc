@@ -69,7 +69,7 @@ ZSH_THEME="fino"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git adb colorize colored-man-pages cp rsync encode64 github iterm2 keychain nmap rsync vi-mode ag brew cp copyfile dirhistory docker docker-compose firewalld git history iterm2 keychain lpass macos man emoji nmap salt vagrant virtualenv )
+plugins=(git adb colorize colored-man-pages cp rsync encode64 github vi-mode ag brew cp copyfile dirhistory docker docker-compose firewalld git history iterm2 keychain lpass macos man emoji nmap salt vagrant virtualenv )
 
 ZSH_COLORIZE_STYLE="colorful"
 ZSH_COLORIZE_CHROMA_FORMATTER=terminal256
