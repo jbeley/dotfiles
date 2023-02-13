@@ -128,3 +128,18 @@ md2ppt () {
     pandoc -o ${1/.md/.pptx} -f markdown -t pptx $1
 
 }
+
+
+if [ ! -f ~/.zsh_firsttime ] ;
+then
+  echo
+  echo "----------"
+  echo Type firsttime to install additional packages
+  echo "----------"
+fi
+
+firsttime () {
+  cat ~/.zsh_packages |sudo xargs apt install -y
+  touch ~/.zsh_firsttime
+
+}

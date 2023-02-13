@@ -1,45 +1,6 @@
-alias maltrieve="docker run --dns=8.8.8.8 --rm -it -v /data/malware:/home/nonroot/maltrieve/archive/   remnux/maltrieve $@"
-alias mastiff="docker run --rm -it -v /data/mastiff:/home/nonroot/workdir remnux/mastiff $@"
-alias vol_docker="docker run --rm -it -v /data/mem:/home/nonroot/memdumps remnux/volatility bash"
-alias jsdetox="docker run --rm -p 3000:3000 remnux/jsdetox"
-alias rekall_docker="docker run -p 8000:800 --name rekall --rm -it -v /data/mem:/home/nonroot/files remnux/rekall bash"
-alias viper="docker run --name viper -it -p 9090:9090 -v /data:/data -v /data/viper:/home/nonroot/workdir -v $(pwd):/work remnux/viper /bin/bash"
-alias radare2="docker run --rm -it -v ~/workdir:/home/nonroot/workdir remnux/radare2 bash"
-alias nsrl="docker run --name=nsrl -i --rm -t blacktop/nsrl $@"
-alias yara_docker="docker run --rm -it -v /data/yara:/rules:ro -v /data:/data:ro  blacktop/yara $@"
-alias chopshop=" docker run -i -t -v /path/to/folder/pcap:/pcap:rw blacktop/chopshop $@"
-alias dockerui_new="docker run --name dockerui -d -p 9000:9000 --privileged -v /var/run/docker.sock:/var/run/docker.sock dockerui/dockerui"
-alias dockerui="docker start dockerui"
-alias bro_docker="docker run -it --rm -v `pwd`:/pcap:rw blacktop/bro $@"
-alias combine=" docker start -a -i combine"
-#alias crits="docker run -d  -p 8443:443 -v /srv/docker/crits/db:/data/crits pnelson/crits:0.3beta"
-#alias elk="docker run -d --name elk -p 80:80 blacktop/elk"
-#alias cuckoo="docker run -d --name cuckoo -p 80:80 blacktop/cuckoo "
-
-
-alias openms_pg="docker run --name some-postgres -e LC_ALL=C.UTF-8 -d postgres"
-alias opennms="docker run --name some-opennms --link some-postgres:postgres -p 8980:8980 -d 'study/opennms'"
-alias ngnix_docker='docker run --name some-nginx -d p 8080:80 -v /some/content:/usr/share/nginx/html:ro -d nginx'
-alias thug="docker run --rm -it -v /data/thug:/home/thug/logs remnux/thug bash"
-alias kali="docker run -t -i kalilinux/kali-linux-docker /bin/bash "
-alias kfh="docker run --rm  k0st/kfh -f -"
-alias grr_docker="docker run  -e EXTERNAL_HOSTNAME="localhost"  -e ADMIN_PASSWORD="demo"  --ulimit nofile=1048576:1048576  -p 0.0.0.0:8000:8000 -p 0.0.0.0:8080:8080  grrdocker/grr grr"
-torbrowser_docker(){
-    docker run --rm \
-            -v /etc/localtime:/etc/localtime:ro \
-            -v /tmp/.X11-unix:/tmp/.X11-unix \
-            -e DISPLAY=unix$DISPLAY \
-            -e GDK_SCALE \
-            -e GDK_DPI_SCALE \
-            --name torbrowser \
-            jess/tor-browser
-
-}
-alias log2timeline='docker run --rm -ti -v "$(pwd):/data:cached" jbeley/plaso $@ '
-
-pescanner_docker(){
-    docker run --rm -it \
-        -v /data/malware:/home/nonroot/workdir \
-        -v $(pwd):/data/ remnux/pescanner bash
-
-}
+alias viper="docker run -p 9999:8000 --rm -it -v "$(pwd):/data" -w /data -v /home/jbeley/.viper:/root/.viper --entrypoint /bin/bash -u root  jbeley/viper"
+alias dissect="docker run --rm -it -v /home/jbeley/Cases:/cases -v "$(pwd):/data" -w /data -v /mnt/jbeley/Cases:/cases2  --entrypoint /bin/bash -u root  jbeley/dissect"
+alias log2timeline='docker run --rm -ti -w /data -v "$(pwd):/data:cached" -w /data accenturecifr/plaso log2timeline.py $@ '
+alias psort='docker run --rm -ti -w /data  -v "$(pwd):/data:cached" -w /data accenturecifr/plaso psort.py $@ '
+alias pinfo='docker run --rm -ti -w /data  -v "$(pwd):/data:cached" -w /data accenturecifr/plaso pinfo.py $@ '
+alias hashcat='docker run --rm -ti -w /data --runtime=nvidia --gpus all -v "$(pwd):/data:cached" -w /data dizcza/docker-hashcat:cuda hashcat $@ '

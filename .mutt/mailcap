@@ -1,14 +1,12 @@
 text/html; w3m -T text/html %s; copiousoutput
-image/gif; eog %s
-image/png; eog %s
-image/jpeg; eog %s
-image/pjpeg; eog %s
-application/msword; antiword %s; copiousoutput;
-#application/msword; /usr/local/OpenOffice.org/program/soffice %s
-#application/vnd.ms-excel; /usr/local/OpenOffice.org/program/soffice %s
-#application/msexcel; /usr/local/OpenOffice.org/program/smaster %s
-application/msexcel; xlhtml -asc %s | w3m -T text/html ; copiousoutput
-applica/msexcel; xlhtml  -asc %s | w3m -T text/html ; copiousoutput
-text/x-vcard; ~/.mutt/mutt.vcard.filter; copiousoutput
-application/pdf; xpdf %s
+
+application/pdf; pdftotext -l 20 -nopgbrk -q -htmlmeta -- %s - | w3m -dump -T text/html; nametemplate=%s.pdf; copiousoutput
+
+application/rtf;                   unrtf --html %s | w3m -dump -T text/html; copiousoutput
+application/richtext;              unrtf --html %s | w3m -dump -T text/html; copiousoutput
+image/*;                           identify -ping -format "\%[EXIF:*]" %s; copiousoutput
+application/vnd.openxmlformats-officedocument.wordprocessingml.document;   pandoc --from=docx --to=plain %s | cat --squeeze-blank; nametemplate=%s.docx; copiousoutput
+application/msword;   pandoc --from=docx --to=plain %s | cat --squeeze-blank; nametemplate=%s.docx; copiousoutput
+application/vnd.ms-excel; xls2csv '%s'; copiousoutput; description="MS Excel sheet";
+application/vnd.ms-powerpoint; catppt '%s'; copiousoutput; description="MS PowerPoint presentation";
 application/octet-stream; ~/.mutt/mutt.octet.filter %s; copiousoutput

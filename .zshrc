@@ -69,7 +69,7 @@ ZSH_THEME="fino"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git adb colorize colored-man-pages cp rsync encode64 github vi-mode ag brew cp copyfile dirhistory docker docker-compose firewalld git history iterm2 lpass macos man emoji nmap salt vagrant virtualenv )
+plugins=(git adb colorize colored-man-pages cp rsync encode64 github vi-mode ag brew cp copyfile dirhistory docker docker-compose firewalld git history iterm2 lpass macos man emoji nmap salt vagrant virtualenv ssh-agent )
 
 ZSH_COLORIZE_STYLE="colorful"
 ZSH_COLORIZE_CHROMA_FORMATTER=terminal256
@@ -159,6 +159,22 @@ function md2ppt () {
 generate_password () {
     xkcdpass --count=1  --delimiter='|' --valid-chars='[a-zA-z]' -C capitalize -n 4 -s ":)" |pbcopy
 }
+
+if [ ! -f ~/.zsh_firsttime ] ;
+then
+  echo
+  echo "----------"
+  echo Type firsttime to install additional packages
+  echo "----------"
+fi
+
+firsttime () {
+  cat ~/.zsh_packages |sudo xargs apt install -y
+  touch ~/.zsh_firsttime
+
+}
+
+
 
 MODE_INDICATOR="%F{white}+%f"
 INSERT_MODE_INDICATOR="%F{yellow}+%f"
