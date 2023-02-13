@@ -18,6 +18,7 @@ dotfiles: ## Installs the dotfiles.
 	done;
 	mkdir -p ${HOME}/.ssh
 	ln -sn .ssh/config ${HOME}/.ssh/config
+	ln -sn .byoubu ${HOME}/.byoubu
 #	gpg --list-keys || true;
 #	ln -sfn $(CURDIR)/.gnupg/gpg.conf $(HOME)/.gnupg/gpg.conf;
 #	ln -sfn $(CURDIR)/.gnupg/gpg-agent.conf $(HOME)/.gnupg/gpg-agent.conf;
